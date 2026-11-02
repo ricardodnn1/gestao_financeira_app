@@ -1,14 +1,14 @@
 import 'package:gestao_financeira/src/core/modules/app_module.dart';
-import 'package:gestao_financeira/src/modules/home/presentation/view/home_view.dart';
+import 'package:gestao_financeira/src/modules/dashboard/presentation/view/dashboard_view.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-final class HomeModule extends BaseAppModule {
-  HomeModule(this.injector);
+final class DashboardModule extends BaseAppModule {
+  DashboardModule(this.injector);
   final GetIt injector;
 
   @override
-  String get name => 'home';
+  String get name => 'dashboard';
 
   @override
   void registerDependencies() {}
@@ -17,7 +17,7 @@ final class HomeModule extends BaseAppModule {
   List<RouteBase> get routes => [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomeView(),
+          builder: (context, state) => const DashboardView(),
         ),
       ];
 }
