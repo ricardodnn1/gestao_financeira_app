@@ -26,9 +26,7 @@ class AsyncStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (hasError) {
@@ -38,7 +36,11 @@ class AsyncStateWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.cloud_off_outlined, size: 48, color: AppColors.softInk),
+              const Icon(
+                Icons.cloud_off_outlined,
+                size: 48,
+                color: AppColors.softInk,
+              ),
               const SizedBox(height: 12),
               Text(
                 errorMessage ?? 'Não foi possível carregar os dados.',
@@ -63,7 +65,11 @@ class AsyncStateWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.inbox_outlined, size: 48, color: AppColors.softInk),
+              const Icon(
+                Icons.inbox_outlined,
+                size: 48,
+                color: AppColors.softInk,
+              ),
               const SizedBox(height: 12),
               Text(
                 emptyMessage,

@@ -5,11 +5,7 @@ import 'package:gestao_financeira/src/modules/shared/domain/entities/transaction
 import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_status_enum.dart';
 
 class TransactionTile extends StatelessWidget {
-  const TransactionTile({
-    super.key,
-    required this.transaction,
-    this.onTap,
-  });
+  const TransactionTile({super.key, required this.transaction, this.onTap});
 
   final Transaction transaction;
   final VoidCallback? onTap;
@@ -49,9 +45,9 @@ class TransactionTile extends StatelessWidget {
                       tx.description,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontSize: 15,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge?.copyWith(fontSize: 15),
                     ),
                     const SizedBox(height: 4),
                     Row(
@@ -74,15 +70,15 @@ class TransactionTile extends StatelessWidget {
                   Text(
                     '${tx.typeSymbol} ${tx.amount.formatAbsolute()}',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: amountColor,
-                          fontSize: 15,
-                        ),
+                      color: amountColor,
+                      fontSize: 15,
+                    ),
                   ),
                   Text(
                     tx.typeLabel,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 12,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(fontSize: 12),
                   ),
                 ],
               ),

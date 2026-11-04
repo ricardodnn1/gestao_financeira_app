@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart'; 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_financeira/src/modules/dashboard/presentation/viewmodel/dashboard_state.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/period_preset_enum.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/view_status_enum.dart';
@@ -10,14 +10,14 @@ import 'package:get_it/get_it.dart';
 
 final dashboardViewModelProvider =
     StateNotifierProvider.autoDispose<DashboardViewModel, DashboardState>(
-  (ref) => DashboardViewModel(
-    getBalance: GetIt.instance.get<GetBalance>(),
-    getPeriodSummary: GetIt.instance.get<GetPeriodSummary>(),
-    getRecent: GetIt.instance.get<GetRecentTransactions>(),
-    getVisibility: GetIt.instance.get<GetBalanceVisibility>(),
-    setVisibility: GetIt.instance.get<SetBalanceVisibility>(),
-  )..load(),
-);
+      (ref) => DashboardViewModel(
+        getBalance: GetIt.instance.get<GetBalance>(),
+        getPeriodSummary: GetIt.instance.get<GetPeriodSummary>(),
+        getRecent: GetIt.instance.get<GetRecentTransactions>(),
+        getVisibility: GetIt.instance.get<GetBalanceVisibility>(),
+        setVisibility: GetIt.instance.get<SetBalanceVisibility>(),
+      )..load(),
+    );
 
 class DashboardViewModel extends StateNotifier<DashboardState> {
   DashboardViewModel({

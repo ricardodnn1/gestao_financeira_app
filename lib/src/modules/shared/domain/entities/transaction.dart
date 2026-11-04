@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/entities/money.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_status_enum.dart';
-import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_type_enum.dart'; 
- 
+import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_type_enum.dart';
 
 class Transaction extends Equatable {
   const Transaction({
@@ -34,27 +33,26 @@ class Transaction extends Equatable {
       type == TransactionType.income ? amount.abs() : -amount.abs();
 
   String get statusLabel => switch (status) {
-        TransactionStatus.completed => 'Concluída',
-        TransactionStatus.pending => 'Pendente',
-        TransactionStatus.failed => 'Falha',
-        TransactionStatus.reversed => 'Estornada',
-      };
+    TransactionStatus.completed => 'Concluída',
+    TransactionStatus.pending => 'Pendente',
+    TransactionStatus.failed => 'Falha',
+    TransactionStatus.reversed => 'Estornada',
+  };
 
-  String get typeLabel =>
-      type == TransactionType.income ? 'Entrada' : 'Saída';
+  String get typeLabel => type == TransactionType.income ? 'Entrada' : 'Saída';
 
   String get typeSymbol => type == TransactionType.income ? '+' : '−';
 
   @override
   List<Object?> get props => [
-        id,
-        description,
-        amount,
-        dateUtc,
-        type,
-        status,
-        assetSymbol,
-        assetName,
-        metadata,
-      ];
+    id,
+    description,
+    amount,
+    dateUtc,
+    type,
+    status,
+    assetSymbol,
+    assetName,
+    metadata,
+  ];
 }

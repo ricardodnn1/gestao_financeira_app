@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart'; 
+import 'package:equatable/equatable.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/entities/money.dart';
 
 class ChartPoint extends Equatable {
@@ -32,11 +32,11 @@ base class PeriodSummary extends Equatable {
 
   @override
   List<Object?> get props => [
-        totalIncome,
-        totalExpense,
-        startUtc,
-        endUtc,
-        evolution,
-        fromCache,
-      ];
+    totalIncome,
+    totalExpense,
+    startUtc,
+    endUtc,
+    evolution,
+    fromCache,
+  ];
 }

@@ -99,17 +99,17 @@ class StatementFilters extends StatelessWidget {
   }
 
   String _statusLabel(TransactionStatus s) => switch (s) {
-        TransactionStatus.completed => 'Concluída',
-        TransactionStatus.pending => 'Pendente',
-        TransactionStatus.failed => 'Falha',
-        TransactionStatus.reversed => 'Estornada',
-      };
+    TransactionStatus.completed => 'Concluída',
+    TransactionStatus.pending => 'Pendente',
+    TransactionStatus.failed => 'Falha',
+    TransactionStatus.reversed => 'Estornada',
+  };
 
   String _periodLabel(PeriodPreset p) => switch (p) {
-        PeriodPreset.today => 'Hoje',
-        PeriodPreset.last7Days => '7 dias',
-        PeriodPreset.last30Days => '30 dias',
-        PeriodPreset.custom => 'Personalizado',
-        PeriodPreset.all => 'Tudo',
-      };
+    PeriodPreset.today => 'Hoje',
+    PeriodPreset.last7Days => '7 dias',
+    PeriodPreset.last30Days => '30 dias',
+    PeriodPreset.custom => 'Personalizado',
+    PeriodPreset.all => 'Tudo',
+  };
 }

@@ -19,6 +19,12 @@ class PaginatedTransactions extends Equatable {
   final bool fromCache;
 
   @override
-  List<Object?> get props =>
-      [items, page, pageSize, hasMore, totalCount, fromCache];
+  List<Object?> get props => [
+    items,
+    page,
+    pageSize,
+    hasMore,
+    totalCount,
+    fromCache,
+  ];
 }

@@ -1,5 +1,5 @@
-import 'package:intl/intl.dart'; 
- 
+import 'package:intl/intl.dart';
+
 class DateFormatters {
   DateFormatters._();
 
@@ -22,7 +22,7 @@ class DateFormatters {
   }
 
   static String shortDay(DateTime utc) => _shortDay.format(utc.toLocal());
- 
+
   static String dayKey(DateTime utc) {
     final local = utc.toLocal();
     return '${local.year}-${local.month.toString().padLeft(2, '0')}-${local.day.toString().padLeft(2, '0')}';

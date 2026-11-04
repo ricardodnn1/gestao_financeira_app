@@ -11,7 +11,6 @@ import 'package:gestao_financeira/src/modules/statement/presentation/statement/v
 import 'package:gestao_financeira/src/modules/statement/presentation/statement/widgets/statement_filters.dart';
 import 'package:go_router/go_router.dart';
 
-
 class StatementPage extends ConsumerStatefulWidget {
   const StatementPage({super.key});
 
@@ -86,7 +85,8 @@ class _StatementPageState extends ConsumerState<StatementPage> {
             ),
             Expanded(
               child: AsyncStateWidget(
-                isLoading: state.status == ViewStatus.loading ||
+                isLoading:
+                    state.status == ViewStatus.loading ||
                     state.status == ViewStatus.initial,
                 hasError: state.status == ViewStatus.error,
                 isEmpty: state.status == ViewStatus.empty,
@@ -142,10 +142,7 @@ class _StatementPageState extends ConsumerState<StatementPage> {
     final map = <String, _DayGroup>{};
     for (final tx in items) {
       final key = DateFormatters.dayKey(tx.dateUtc);
-      map.putIfAbsent(
-        key,
-        () => _DayGroup(date: tx.dateUtc, items: []),
-      );
+      map.putIfAbsent(key, () => _DayGroup(date: tx.dateUtc, items: []));
       map[key]!.items.add(tx);
     }
     return map.values.toList();

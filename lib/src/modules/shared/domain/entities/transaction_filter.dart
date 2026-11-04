@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/entities/transaction.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/period_preset_enum.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_status_enum.dart';
-import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_type_enum.dart'; 
- 
+import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_type_enum.dart';
+
 base class TransactionFilter extends Equatable {
   const TransactionFilter({
     this.types = const {},
@@ -40,15 +40,12 @@ base class TransactionFilter extends Equatable {
       endUtc: clearDates ? null : (endUtc ?? this.endUtc),
       query: query ?? this.query,
     );
-  } 
- 
+  }
+
   (DateTime? start, DateTime? end) resolveRange({DateTime? nowUtc}) {
     final now = nowUtc ?? DateTime.now().toUtc();
     return switch (period) {
-      PeriodPreset.today => (
-          DateTime.utc(now.year, now.month, now.day),
-          now,
-        ),
+      PeriodPreset.today => (DateTime.utc(now.year, now.month, now.day), now),
       PeriodPreset.last7Days => (now.subtract(const Duration(days: 7)), now),
       PeriodPreset.last30Days => (now.subtract(const Duration(days: 30)), now),
       PeriodPreset.custom => (startUtc, endUtc),
@@ -75,5 +72,3 @@ base class TransactionFilter extends Equatable {
   @override
   List<Object?> get props => [types, statuses, period, startUtc, endUtc, query];
 }
-
-

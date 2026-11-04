@@ -5,7 +5,6 @@ import 'package:gestao_financeira/src/modules/shared/domain/enums/view_status_en
 import 'package:gestao_financeira/src/modules/shared/domain/usecases/get_transcation_by_id_usecase.dart';
 import 'package:get_it/get_it.dart';
 
- 
 class TransactionDetailState extends Equatable {
   const TransactionDetailState({
     this.status = ViewStatus.loading,
@@ -35,17 +34,15 @@ class TransactionDetailState extends Equatable {
 
 final transactionDetailViewModelProvider = StateNotifierProvider.autoDispose
     .family<TransactionDetailViewModel, TransactionDetailState, String>(
-  (ref, id) => TransactionDetailViewModel(
-    id: id,
-    getById: GetIt.instance.get<GetTransactionById>(),
-  )..load(),
-);
+      (ref, id) => TransactionDetailViewModel(
+        id: id,
+        getById: GetIt.instance.get<GetTransactionById>(),
+      )..load(),
+    );
 
 class TransactionDetailViewModel extends StateNotifier<TransactionDetailState> {
-  TransactionDetailViewModel({
-    required this.id,
-    required this.getById,
-  }) : super(const TransactionDetailState());
+  TransactionDetailViewModel({required this.id, required this.getById})
+    : super(const TransactionDetailState());
 
   final String id;
   final GetTransactionById getById;
@@ -58,10 +55,8 @@ class TransactionDetailViewModel extends StateNotifier<TransactionDetailState> {
         status: ViewStatus.error,
         errorMessage: f.message,
       ),
-      onSuccess: (tx) => state = state.copyWith(
-        status: ViewStatus.success,
-        transaction: tx,
-      ),
+      onSuccess: (tx) =>
+          state = state.copyWith(status: ViewStatus.success, transaction: tx),
     );
   }
 }

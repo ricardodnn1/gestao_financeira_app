@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/entities/money.dart';
 
 base class AccountBalance extends Equatable {
-  const AccountBalance  ({
+  const AccountBalance({
     required this.available,
     required this.updatedAtUtc,
     this.currency = 'BRL',

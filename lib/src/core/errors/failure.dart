@@ -11,9 +11,7 @@ sealed class Failure extends Equatable {
 }
 
 final class NetworkFailure extends Failure {
-  const NetworkFailure([
-    super.message = 'Sem conexão com a internet.',
-  ]);
+  const NetworkFailure([super.message = 'Sem conexão com a internet.']);
 }
 
 final class ServerFailure extends Failure {
@@ -25,7 +23,8 @@ final class ServerFailure extends Failure {
 
 final class RateLimitFailure extends Failure {
   const RateLimitFailure([
-    super.message = 'Limite de requisições atingido. Aguarde e tente novamente.',
+    super.message =
+        'Limite de requisições atingido. Aguarde e tente novamente.',
   ]) : super(code: '429');
 }
 
@@ -36,9 +35,8 @@ final class CacheFailure extends Failure {
 }
 
 final class NotFoundFailure extends Failure {
-  const NotFoundFailure([
-    super.message = 'Recurso não encontrado.',
-  ]) : super(code: '404');
+  const NotFoundFailure([super.message = 'Recurso não encontrado.'])
+    : super(code: '404');
 }
 
 final class ParsingFailure extends Failure {
@@ -48,7 +46,5 @@ final class ParsingFailure extends Failure {
 }
 
 final class UnexpectedFailure extends Failure {
-  const UnexpectedFailure([
-    super.message = 'Ocorreu um erro inesperado.',
-  ]);
+  const UnexpectedFailure([super.message = 'Ocorreu um erro inesperado.']);
 }

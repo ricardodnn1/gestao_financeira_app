@@ -10,7 +10,6 @@ import 'package:gestao_financeira/src/modules/shared/domain/enums/transaction_ty
 class TransactionMapper {
   const TransactionMapper();
 
-  
   static const Money openingBalance = Money(50_000_00);
 
   List<Transaction> fromMarketCoins(List<CoinMarketModel> coins) {

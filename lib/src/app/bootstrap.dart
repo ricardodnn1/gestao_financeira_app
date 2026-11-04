@@ -8,7 +8,7 @@ import 'package:gestao_financeira/src/modules/dashboard/dashboard_module.dart';
 import 'package:gestao_financeira/src/modules/shared/shared_module.dart';
 import 'package:gestao_financeira/src/modules/statement/statement_module.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';   
+import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class AppBootstrap {
@@ -21,11 +21,7 @@ class AppBootstrap {
     _registerCoreDependencies();
 
     _moduleManager = AppModuleManager(
-      modules: [
-        SharedModule(_injector),
-        DashboardModule(),
-        StatementModule(),
-      ],
+      modules: [SharedModule(_injector), DashboardModule(), StatementModule()],
     );
 
     await _moduleManager.initialize();
@@ -41,16 +37,12 @@ class AppBootstrap {
 
   void _registerCoreDependencies() {
     if (!_injector.isRegistered<AppHttpClient>()) {
-      _injector.registerLazySingleton<AppHttpClient>(
-        () => HttpClientImpl(),
-      );
+      _injector.registerLazySingleton<AppHttpClient>(() => HttpClientImpl());
     }
   }
 
   Widget buildApp(GoRouter router) {
-    return ProviderScope(
-      child: ModularExampleApp(router: router),
-    );
+    return ProviderScope(child: ModularExampleApp(router: router));
   }
 
   Future<void> dispose() async {

@@ -16,9 +16,8 @@ final class StatementModule extends BaseAppModule {
     ),
     GoRoute(
       path: AppRoutes.transactionDetail,
-      builder: (context, state) => TransactionDetailPage(
-        transactionId: state.pathParameters['id']!,
-      ),
+      builder: (context, state) =>
+          TransactionDetailPage(transactionId: state.pathParameters['id']!),
     ),
   ];
 }

@@ -33,8 +33,7 @@ class LedgerStore {
     if (!forceRefresh && _transactions.isNotEmpty) {
       return Future.value(const Success(null));
     }
- 
-    
+
     if (_loading != null && !forceRefresh) {
       return _loading!;
     }

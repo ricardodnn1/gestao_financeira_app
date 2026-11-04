@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io'; 
- 
+import 'dart:io';
+
 import 'package:gestao_financeira/src/core/constants/api_constants.dart';
 import 'package:gestao_financeira/src/core/errors/failure.dart';
 import 'package:gestao_financeira/src/core/network/http_client.dart';
@@ -10,11 +10,9 @@ import 'package:http/http.dart' as http;
 /// Implementação com o package `http`.
 /// Pode ser trocada por Dio mantendo o contrato [AppHttpClient].
 class HttpClientImpl implements AppHttpClient {
-  HttpClientImpl({
-    http.Client? client,
-    String? baseUrl,
-  })  : _client = client ?? http.Client(),
-        _baseUrl = baseUrl ?? ApiConstants.baseUrl;
+  HttpClientImpl({http.Client? client, String? baseUrl})
+    : _client = client ?? http.Client(),
+      _baseUrl = baseUrl ?? ApiConstants.baseUrl;
 
   final http.Client _client;
   final String _baseUrl;
@@ -103,13 +101,13 @@ class HttpClientImpl implements AppHttpClient {
     while (true) {
       attempt++;
       try {
-        final uri = Uri.parse('$_baseUrl$path').replace(
-          queryParameters: queryParameters,
-        );
+        final uri = Uri.parse(
+          '$_baseUrl$path',
+        ).replace(queryParameters: queryParameters);
 
         final requestHeaders = <String, String>{
           'Accept': 'application/json',
-          'Content-Type': 'application/json', 
+          'Content-Type': 'application/json',
         };
 
         final cancelClient = http.Client();
@@ -128,8 +126,8 @@ class HttpClientImpl implements AppHttpClient {
                 body: body == null
                     ? null
                     : body is String
-                        ? body
-                        : jsonEncode(body),
+                    ? body
+                    : jsonEncode(body),
               )
               .timeout(ApiConstants.receiveTimeout);
         }
@@ -163,11 +161,7 @@ class HttpClientImpl implements AppHttpClient {
     }
   }
 
-  String _requestKey(
-    String method,
-    String path,
-    Map<String, String>? query,
-  ) {
+  String _requestKey(String method, String path, Map<String, String>? query) {
     final sorted = (query?.entries.toList() ?? [])
       ..sort((a, b) => a.key.compareTo(b.key));
     final qs = sorted.map((e) => '${e.key}=${e.value}').join('&');

@@ -13,11 +13,12 @@ class CalculatePeriodTotals {
     Money openingBalance = const Money(0),
     DateTime? nowUtc,
   }) {
-    final filtered = transactions
-        .where((tx) => filter.matches(tx, nowUtc: nowUtc))
-        .where((tx) => tx.status != TransactionStatus.failed)
-        .toList()
-      ..sort((a, b) => a.dateUtc.compareTo(b.dateUtc));
+    final filtered =
+        transactions
+            .where((tx) => filter.matches(tx, nowUtc: nowUtc))
+            .where((tx) => tx.status != TransactionStatus.failed)
+            .toList()
+          ..sort((a, b) => a.dateUtc.compareTo(b.dateUtc));
 
     var income = Money.zero();
     var expense = Money.zero();
@@ -32,18 +33,14 @@ class CalculatePeriodTotals {
     }
 
     final (start, end) = filter.resolveRange(nowUtc: nowUtc);
-    final evolution = _buildEvolution(
-      filtered,
-      openingBalance: openingBalance,
-    );
+    final evolution = _buildEvolution(filtered, openingBalance: openingBalance);
 
     return PeriodSummary(
       totalIncome: income,
       totalExpense: expense,
-      startUtc: start ??
-          (filtered.isEmpty
-              ? DateTime.now().toUtc()
-              : filtered.first.dateUtc),
+      startUtc:
+          start ??
+          (filtered.isEmpty ? DateTime.now().toUtc() : filtered.first.dateUtc),
       endUtc: end ?? DateTime.now().toUtc(),
       evolution: evolution,
     );
@@ -85,7 +82,6 @@ class CalculatePeriodTotals {
       points.add(ChartPoint(dateUtc: tx.dateUtc, balance: running));
     }
 
-   
     if (points.length <= 14) return points;
     final step = (points.length / 14).ceil();
     final sampled = <ChartPoint>[];
