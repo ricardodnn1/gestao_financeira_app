@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_financeira/src/app/app.dart';
 import 'package:gestao_financeira/src/core/modules/app_module_manager.dart';
-import 'package:gestao_financeira/src/core/network/api_client.dart';
+import 'package:gestao_financeira/src/core/network/http_client.dart';
+import 'package:gestao_financeira/src/core/network/http_client_impl.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,9 +33,9 @@ class AppBootstrap {
   }
 
   void _registerCoreDependencies() {
-    if (!_injector.isRegistered<ApiClient>()) {
-      _injector.registerLazySingleton<ApiClient>(
-        () => ApiClient(),
+    if (!_injector.isRegistered<AppHttpClient>()) {
+      _injector.registerLazySingleton<AppHttpClient>(
+        () => HttpClientImpl(),
       );
     }
   }
