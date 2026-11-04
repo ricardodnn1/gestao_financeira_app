@@ -23,7 +23,9 @@ class PeriodSummarySection extends StatelessWidget {
       children: [
         Text(
           'Resumo do período',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 20),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(fontSize: 20),
         ),
         const SizedBox(height: 12),
         SingleChildScrollView(
@@ -75,21 +77,18 @@ class PeriodSummarySection extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: 12),
-        SizedBox(
-          height: 160,
-          child: _BalanceChart(points: summary.evolution),
-        ),
+        SizedBox(height: 160, child: _BalanceChart(points: summary.evolution)),
       ],
     );
   }
 
   String _label(PeriodPreset p) => switch (p) {
-        PeriodPreset.today => 'Hoje',
-        PeriodPreset.last7Days => '7 dias',
-        PeriodPreset.last30Days => '30 dias',
-        PeriodPreset.custom => 'Personalizado',
-        PeriodPreset.all => 'Tudo',
-      };
+    PeriodPreset.today => 'Hoje',
+    PeriodPreset.last7Days => '7 dias',
+    PeriodPreset.last30Days => '30 dias',
+    PeriodPreset.custom => 'Personalizado',
+    PeriodPreset.all => 'Tudo',
+  };
 }
 
 class _TotalTile extends StatelessWidget {
@@ -108,7 +107,9 @@ class _TotalTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(16),
+
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.65),
         borderRadius: BorderRadius.circular(14),
@@ -127,7 +128,9 @@ class _TotalTile extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(color: color),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(color: color),
           ),
         ],
       ),

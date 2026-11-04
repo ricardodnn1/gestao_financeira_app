@@ -5,6 +5,8 @@ class ApiConstants {
     'API_BASE_URL',
     defaultValue: 'https://api.coingecko.com/api/v3',
   );
+
+  static const String apiKey = String.fromEnvironment('API_KEY');
    
   static const Duration connectTimeout = Duration(seconds: 15);
   static const Duration receiveTimeout = Duration(seconds: 20); 

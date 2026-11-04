@@ -76,10 +76,17 @@ O projeto foi organizado em módulos e camadas:
 
 Antes de iniciar, certifique-se de ter os seguintes itens instalados:
 
-- Flutter SDK
-- Dart SDK
+- Flutter SDK 3.47.9 (stable) — versão disponível no ambiente de desenvolvimento;
+- Dart SDK compatível com a restrição `^3.12.2` definida no `pubspec.yaml` (Dart 3.13.7 no ambiente de desenvolvimento);
 - Android Studio ou VS Code com suporte ao Flutter
-- Emulador Android/iOS ou dispositivo físico
+- Emulador ou dispositivo físico para a plataforma desejada.
+
+O projeto não fixa uma versão específica do Flutter. Para conferir as versões instaladas e o estado das ferramentas:
+
+```bash
+flutter --version
+flutter doctor
+```
 
 ## Instalação
 
@@ -102,27 +109,53 @@ flutter pub get
 flutter doctor
 ```
 
+## Configuração de ambiente
+
+O endereço da API pode ser configurado em tempo de compilação usando `--dart-define`. Se omitido, a aplicação usa `https://api.coingecko.com/api/v3`.
+
+Para apontar para outro endereço, passe `API_BASE_URL` ao comando de execução ou build. Por exemplo:
+
+```bash
+flutter run --dart-define=API_BASE_URL=https://api.coingecko.com/api/v3
+```
+
+Não inclua chaves reais no README ou em outros arquivos versionados. O exemplo abaixo usa um placeholder; informe sua chave localmente se necessário. Atenção: na implementação atual, o app lê `API_BASE_URL`; `API_KEY` e `ENV` ainda não são consumidos pelo código.
+
 ## Como executar
 
-Para rodar o aplicativo em um emulador ou dispositivo conectado:
+Para rodar no emulador ou dispositivo conectado com os defines de ambiente:
 
 ```bash
 flutter run --dart-define=API_KEY=YOUR_API_KEY_HERE --dart-define=ENV=prod
 ```
 
-Se quiser rodar em um dispositivo específico:
+Para escolher um dispositivo ou sobrescrever o endereço da API:
 
 ```bash
 flutter devices
-flutter run -d <device-id> --dart-define=API_KEY=YOUR_API_KEY_HERE --dart-define=ENV=prod
+flutter run -d <device-id> --dart-define=API_KEY=YOUR_API_KEY_HERE --dart-define=ENV=prod --dart-define=API_BASE_URL=https://api.coingecko.com/api/v3
 ```
 
 ## Testes
 
-Para executar a suíte de testes:
+Execute a suíte completa de testes:
 
 ```bash
 flutter test
+```
+
+## Gerar APK
+
+Para gerar o APK de release:
+
+```bash
+flutter build apk --release
+```
+
+O arquivo será gerado em `build/app/outputs/flutter-apk/app-release.apk`. Para usar um endereço de API diferente do padrão, inclua `--dart-define` no comando:
+
+```bash
+flutter build apk --release --dart-define=API_BASE_URL=https://api.coingecko.com/api/v3
 ```
 
 ## Exemplo de resposta da API
