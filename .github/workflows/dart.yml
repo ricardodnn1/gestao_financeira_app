@@ -1,0 +1,49 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Configura o ambiente Java (necessário para compilar o Android no Flutter)
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 2. Configura o SDK do Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x' # Ou especifique uma versão exata, ex: '3.19.0'
+          channel: 'stable'
+          cache: true
+
+      # 3. Instala as dependências do projeto
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Verifica a formatação do código
+      - name: Verify formatting
+        run: flutter format --output=none --set-exit-if-changed .
+
+      # 5. Analisa o código estaticamente
+      - name: Analyze project source
+        run: flutter analyze
+
+      # 6. Executa os testes automatizados
+      - name: Run tests
+        run: flutter test
+
+      # 7. (Opcional) Compila o APK de Debug para garantir que o Android builda sem erros
+      - name: Build Android APK
+        run: flutter build apk --debug
