@@ -1,17 +1,16 @@
- 
 import 'package:gestao_financeira/src/core/modules/app_module.dart';
-import 'package:go_router/go_router.dart'; 
+import 'package:go_router/go_router.dart';
 
 class AppModuleManager {
   AppModuleManager({required List<AppModule> modules})
-      : _modules = List.unmodifiable(modules);
+    : _modules = List.unmodifiable(modules);
 
   final List<AppModule> _modules;
   bool _initialized = false;
 
   List<RouteBase> get routes => [
-        for (final module in _modules) ...module.routes,
-      ];
+    for (final module in _modules) ...module.routes,
+  ];
 
   Future<void> initialize() async {
     if (_initialized) {
@@ -20,7 +19,7 @@ class AppModuleManager {
 
     _validateUniqueNames();
     for (final module in _modules) {
-      module.registerDependencies();
+      await module.registerDependencies();
     }
     for (final module in _modules) {
       await module.initialize();

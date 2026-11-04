@@ -109,10 +109,7 @@ class HttpClientImpl implements AppHttpClient {
 
         final requestHeaders = <String, String>{
           'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          if (ApiConstants.apiKey.isNotEmpty)
-            'x-cg-demo-api-key': ApiConstants.apiKey,
-          ...?headers,
+          'Content-Type': 'application/json', 
         };
 
         final cancelClient = http.Client();

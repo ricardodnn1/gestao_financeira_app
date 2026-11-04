@@ -12,7 +12,9 @@ import 'package:get_it/get_it.dart';
 final statementViewModelProvider =
     StateNotifierProvider.autoDispose<StatementViewModel, StatementState>(
       (ref) =>
-          StatementViewModel(getTransactions: GetIt.instance.get<GetTransactions>())..load(),
+          StatementViewModel(
+            getTransactions: GetIt.instance.get<GetTransactions>(),
+          )..load(),
     );
 
 class StatementViewModel extends StateNotifier<StatementState> {

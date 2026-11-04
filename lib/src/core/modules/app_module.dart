@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 abstract interface class AppModule {
   String get name;
 
-  void registerDependencies();
+  Future<void> registerDependencies();
 
   List<RouteBase> get routes;
 
@@ -13,6 +13,9 @@ abstract interface class AppModule {
 }
 
 abstract base class BaseAppModule implements AppModule {
+  @override
+  Future<void> registerDependencies() async {}
+
   @override
   Future<void> initialize() async {}
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gestao_financeira/src/core/theme/app_theme.dart';
-import 'package:gestao_financeira/src/core/utils/date_formatters.dart'; 
+import 'package:gestao_financeira/src/core/utils/date_formatters.dart';
 import 'package:gestao_financeira/src/modules/shared/domain/enums/view_status_enum.dart';
 import 'package:gestao_financeira/src/modules/shared/widgets/async_state_widget.dart';
 import 'package:gestao_financeira/src/modules/statement/presentation/transaction_detail/viewmodel/transaction_detail_viewmodel.dart';
@@ -16,8 +16,9 @@ class TransactionDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(transactionDetailViewModelProvider(transactionId));
-    final vm =
-        ref.read(transactionDetailViewModelProvider(transactionId).notifier);
+    final vm = ref.read(
+      transactionDetailViewModelProvider(transactionId).notifier,
+    );
     final tx = state.transaction;
 
     return Scaffold(
@@ -55,11 +56,11 @@ class TransactionDetailPage extends ConsumerWidget {
                     Text(
                       '${tx.typeSymbol} ${tx.amount.formatAbsolute()}',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 30,
-                            color: tx.isIncome
-                                ? AppColors.income
-                                : AppColors.expense,
-                          ),
+                        fontSize: 30,
+                        color: tx.isIncome
+                            ? AppColors.income
+                            : AppColors.expense,
+                      ),
                     ),
                     const SizedBox(height: 24),
                     _DetailRow(label: 'Tipo', value: tx.typeLabel),
@@ -110,11 +111,7 @@ class TransactionDetailPage extends ConsumerWidget {
 }
 
 class _DetailRow extends StatelessWidget {
-  const _DetailRow({
-    required this.label,
-    required this.value,
-    this.trailing,
-  });
+  const _DetailRow({required this.label, required this.value, this.trailing});
 
   final String label;
   final String value;
@@ -129,16 +126,10 @@ class _DetailRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 120,
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
           ),
           Expanded(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyLarge),
           ),
           ?trailing,
         ],
