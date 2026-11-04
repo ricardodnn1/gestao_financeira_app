@@ -9,11 +9,10 @@ import 'package:gestao_financeira/src/modules/shared/domain/entities/transaction
 
 class LedgerStore {
   LedgerStore({
-    required CoinGeckoRemoteDataSource remote,
-    required CacheLocalDataSource cache,
+    required this._remote,
+    required this._cache,
     this.mapper = const TransactionMapper(),
-  }) : _remote = remote,
-       _cache = cache;
+  });
 
   final CoinGeckoRemoteDataSource _remote;
   final CacheLocalDataSource _cache;

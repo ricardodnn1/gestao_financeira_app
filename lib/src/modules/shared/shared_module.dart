@@ -20,8 +20,7 @@ import 'package:gestao_financeira/src/modules/shared/domain/usecases/toggle_bala
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-export 'package:gestao_financeira/src/modules/shared/widgets/async_state_widget.dart'; 
+ 
 
 final class SharedModule extends BaseAppModule {
   SharedModule(this.getIt);

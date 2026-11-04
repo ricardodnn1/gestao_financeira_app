@@ -107,14 +107,14 @@ flutter doctor
 Para rodar o aplicativo em um emulador ou dispositivo conectado:
 
 ```bash
-flutter run
+flutter run --dart-define=API_KEY=YOUR_API_KEY_HERE --dart-define=ENV=prod
 ```
 
 Se quiser rodar em um dispositivo específico:
 
 ```bash
 flutter devices
-flutter run -d <device-id>
+flutter run -d <device-id> --dart-define=API_KEY=YOUR_API_KEY_HERE --dart-define=ENV=prod
 ```
 
 ## Testes
